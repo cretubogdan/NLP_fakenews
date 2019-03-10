@@ -1,5 +1,5 @@
 def main():
-    print('Hola!')
+    print('Ssh test :D')
 
 if __name__ == '__main__':
     main()
