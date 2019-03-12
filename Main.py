@@ -1,8 +1,9 @@
 from Logger import *
+from DbManager import *
 
 def main():
     logger = Logger()
-    logger.Log(Severity.INFO, "MERGEEE")
+    db = DbManager()
 
 if __name__ == '__main__':
     main()
