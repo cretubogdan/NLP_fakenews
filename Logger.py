@@ -53,3 +53,4 @@ class Logger:
         Logger.lock.acquire()
         Logger.file.write("[{0}]:[{1}]:{2}\n".format(Logger.TimeNow(), level.name, message))
         Logger.lock.release()
+
