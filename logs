@@ -1,0 +1,43 @@
+[13-03-2019 03:15:11]:[INFO]:Logger initialization succesfully at the path: /home/bogcretu/Desktop/workspace/NLP_fakenews/logs
+[13-03-2019 03:15:11]:[INFO]:Successfully connected to the DB: localhost:27017
+[13-03-2019 03:21:18]:[INFO]:Logger initialization succesfully at the path: /home/bogcretu/Desktop/workspace/NLP_fakenews/logs
+[13-03-2019 03:21:18]:[INFO]:Successfully connected to the DB: localhost:27017
+[13-03-2019 03:22:23]:[INFO]:Logger initialization succesfully at the path: /home/bogcretu/Desktop/workspace/NLP_fakenews/logs
+[13-03-2019 03:22:23]:[INFO]:Successfully connected to the DB: localhost:27017
+[13-03-2019 03:25:09]:[INFO]:Logger initialization succesfully at the path: /home/bogcretu/Desktop/workspace/NLP_fakenews/logs
+[13-03-2019 03:25:09]:[INFO]:Successfully connected to the DB: localhost:27017
+[13-03-2019 03:25:09]:[INFO]:New insert into the DB: SA:FakeNews
+[13-03-2019 03:25:09]:[INFO]:New bulk insert into the DB: SA:FakeNews
+[13-03-2019 03:25:09]:[INFO]:New find into the DB: SA:FakeNews
+[13-03-2019 03:28:01]:[INFO]:Logger initialization succesfully at the path: /home/bogcretu/Desktop/workspace/NLP_fakenews/logs
+[13-03-2019 03:28:01]:[INFO]:Successfully connected to the DB: localhost:27017
+[13-03-2019 03:28:01]:[INFO]:New insert into the DB: SA:FakeNews
+[13-03-2019 03:28:01]:[INFO]:New bulk insert into the DB: SA:FakeNews
+[13-03-2019 03:28:01]:[INFO]:New find into the DB: SA:FakeNews
+[13-03-2019 03:28:01]:[INFO]:New find bulk into the DB: SA:FakeNews
+[13-03-2019 03:29:08]:[INFO]:Logger initialization succesfully at the path: /home/bogcretu/Desktop/workspace/NLP_fakenews/logs
+[13-03-2019 03:29:08]:[INFO]:Successfully connected to the DB: localhost:27017
+[13-03-2019 03:29:08]:[INFO]:New insert into the DB: SA:FakeNews
+[13-03-2019 03:29:08]:[INFO]:New bulk insert into the DB: SA:FakeNews
+[13-03-2019 03:29:08]:[INFO]:New find into the DB: SA:FakeNews
+[13-03-2019 03:29:08]:[INFO]:New find bulk into the DB: SA:FakeNews
+[13-03-2019 03:29:43]:[INFO]:Logger initialization succesfully at the path: /home/bogcretu/Desktop/workspace/NLP_fakenews/logs
+[13-03-2019 03:29:43]:[INFO]:Successfully connected to the DB: localhost:27017
+[13-03-2019 03:29:43]:[INFO]:New insert into the DB: SA:FakeNews
+[13-03-2019 03:29:43]:[INFO]:New bulk insert into the DB: SA:FakeNews
+[13-03-2019 03:29:43]:[INFO]:New find into the DB: SA:FakeNews
+[13-03-2019 03:29:44]:[INFO]:New find bulk into the DB: SA:FakeNews
+[13-03-2019 03:31:06]:[INFO]:Logger initialization succesfully at the path: /home/bogcretu/Desktop/workspace/NLP_fakenews/logs
+[13-03-2019 03:31:06]:[INFO]:Successfully connected to the DB: localhost:27017
+[13-03-2019 03:31:06]:[INFO]:New insert into the DB: SA:FakeNews
+[13-03-2019 03:31:06]:[INFO]:New bulk insert into the DB: SA:FakeNews
+[13-03-2019 03:31:06]:[INFO]:New find into the DB: SA:FakeNews
+[13-03-2019 03:31:06]:[INFO]:New find bulk into the DB: SA:FakeNews
+[13-03-2019 03:31:06]:[INFO]:New bulk delete from DB: SA:FakeNews
+[13-03-2019 03:31:16]:[INFO]:Logger initialization succesfully at the path: /home/bogcretu/Desktop/workspace/NLP_fakenews/logs
+[13-03-2019 03:31:16]:[INFO]:Successfully connected to the DB: localhost:27017
+[13-03-2019 03:31:16]:[INFO]:New insert into the DB: SA:FakeNews
+[13-03-2019 03:31:16]:[INFO]:New bulk insert into the DB: SA:FakeNews
+[13-03-2019 03:31:16]:[INFO]:New find into the DB: SA:FakeNews
+[13-03-2019 03:31:16]:[INFO]:New find bulk into the DB: SA:FakeNews
+[13-03-2019 03:31:16]:[INFO]:New bulk delete from DB: SA:FakeNews

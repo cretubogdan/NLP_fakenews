@@ -32,7 +32,7 @@ class Logger:
                 try:
                     path = os.getcwd()
                     path += '/logs'
-                    Logger.file = open(path, 'a+')
+                    file = open(path, 'a+')
                     self.Log(Severity.WARNING, "Env variable {0} was not set. Trying to write in current directory".format(Logger.ENV_VAR_PATH_NAME))
                     self.Log(Severity.INFO, "Logger initialization succesfully at the path: {0}".format(path))
                 except:
@@ -54,3 +54,5 @@ class Logger:
         Logger.file.write("[{0}]:[{1}]:{2}\n".format(Logger.TimeNow(), level.name, message))
         Logger.lock.release()
 
+    def Close():
+        Logger.file.close()
