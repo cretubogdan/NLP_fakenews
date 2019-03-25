@@ -28,7 +28,11 @@ class DbManager:
 
         DbManager.lock.release()
 
+    def __del__(self):
+        self.Close()
+
     def Close(self):
+        DbManager.logger.Log(Severity.INFO, "Db connection will be closed")
         DbManager.client.close()
 
     def Insert(self, value):

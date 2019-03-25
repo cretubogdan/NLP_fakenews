@@ -44,6 +44,9 @@ class Logger:
                 self.Log(Severity.WARNING, "Logger initialization succesfully at the STDOUT")
         
         Logger.lock.release()
+
+    def __del(self)__:
+        self.Close()
         
     @staticmethod
     def TimeNow():
