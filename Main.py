@@ -1,5 +1,6 @@
 from Logger import *
 from DbManager import *
+from WorkPool import *
 
 collection_name = 'FakeNews'
 
@@ -23,9 +24,19 @@ def test_logger():
     logger_1.Log(Severity.ERROR, "Test_ERROR")
     logger_2.Log(Severity.FATAL, "Test_FATAL")
 
+def test_worker(n):
+    return n*2
+
+def test_wp():
+    wp = WorkPool()
+    wp.run()
+    for i in range(1000):
+        wp.enqueue(test_worker, i)
+    for i in wp.get_results():
+        print(i)
 
 def main():
-    test_dbmanager()
+    test_wp()
 
 if __name__ == '__main__':
     main()

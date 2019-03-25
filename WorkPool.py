@@ -1,53 +1,113 @@
 from Logger import *
-from threading import Thread, Lock
-import queue
+from queue import Queue
+from threading import Thread, Event
 import multiprocessing
 
+class Worker(Thread):
 
-class IWorker(Thread):
+    def __init__(self, name, queue, results, abort, idle):
+        Thread.__init__(self)
+        self.logger = Logger()
+        self.name = name
+        self.queue = queue
+        self.results = results
+        self.abort = abort
+        self.idle = idle
+        
+        self.logger.Log(Severity.INFO, "Worker [{0}] initialization succesfully".format(self.name))
+
+        self.start()
+
+
     def run(self):
-       pass 
+        self.logger.Log(Severity.INFO, "Worker [{0}] started".format(self.name))
+        while not self.abort.is_set():
+            try:
+                func, args, kwargs = self.queue.get(False)
+                self.logger.Log(Severity.INFO, "Worker [{0}] got a new job to do".format(self.name))
+                self.idle.clear()
+            except:
+                self.idle.set()
+                continue
+
+            try:
+                self.logger.Log(Severity.INFO, "Worker [{0}] started job {1}".format(self.name, func.__name__))
+                result = func(*args, **kwargs)
+                if result is not None:
+                    self.results.put(result)
+                    self.logger.Log(Severity.INFO, "Worker [{0}] finished job".format(self.name))
+            except:
+                self.logger.Log(Severity.ERROR, "Worker [{0}] couldn't finish job {1}".format(self.name, func.__name__))
+            finally:
+                self.queue.task_done()
 
 
 class WorkPool:
-    num_workers = None
-    q = None
-    lock_singleton = Lock()
-    lock_task = Lock()
-    logger = Logger()
-    
+
+    INTERVAL_CHECK_ALIVE = 1
+
     def __init__(self):
-        WorkPool.lock_singleton.acquire()
-        WorkPool.num_workers = max(1, multiprocessing.cpu_count() * 2 - 1)
-        
-        if None == WorkPool.q:
-            WorkPool.q = queue.Queue()
-            WorkPool.counter_active_workers = 0
-            WorkPool.logger.Log(Severity.INFO, "Work pool initialization completly")
-            WorkPool.logger.Log(Severity.INFO, "Work pool with {0} workers".format(WorkPool.num_workers))
+        self.logger = Logger()
+        self.thread_count = 2 * multiprocessing.cpu_count() - 1
+        self.queue = Queue(0)
+        self.results_queue = Queue(0)
 
-        WorkPool.lock_singleton.release()
+        self.aborts = []
+        self.idles = []
+        self.threads = []
 
-    def AddTask(self, task):
-        WorkPool.q.put(task)
+        self.logger.Log(Severity.INFO, "WorkPool initialization succesfully with # of cores {0}".format(self.thread_count))
 
-    def GetTask():
-        to_return = None
-        WorkPool.lock_task.acquire()
-        while WorkPool.q.empty():
+    def __del__(self):
+        self.logger.Log(Severity.INFO, "WorkPool starts aborting for {0} workers".format(self.thread_count))
+        self.abort()
+
+    def abort(self):
+        for a in self.aborts:
+            self.logger.Log(Severity.INFO, "WorkPool made a new abort")
+            a.set()
+
+    def run(self):
+        if self.alive():
+            self.logger.Log(Severity.INFO, "WorkPool already running")
+            return False
+
+        self.logger.Log(Severity.INFO, "WorkPool will be started with # of cores {0}".format(self.thread_count))
+
+        for n in range(self.thread_count):
+            abort = Event()
+            idle = Event()
+            self.aborts.append(abort)
+            self.idles.append(idle)
+            self.threads.append(Worker("#id-{0}".format(n), self.queue, self.results_queue, abort, idle))
+
+        self.logger.Log(Severity.INFO, "WorkPool started running");
+        return True
+
+
+    def get_results(self):
+        results = []
+        while not self.idle():
             continue
-        to_return = WorkPool.q.get()
-        WorkPool.lock_task.release()
-        return to_return
+        try:
+            while True:
+                results.append(self.results_queue.get(False))
+                self.results_queue.task_done()
+        except:
+            pass
 
-    def Start(self):
-        workers = []
-        for t in range(WorkPool.num_workers):
-            worker = self.GetTask()
-            workers.append(worker)
-        for t in range(WorkPool.num_workers):
-            workers[t].start()
-        for t in range(WorkPool.num_workers):
-            workers[t].join()
+        return results
 
 
+    def alive(self):
+        return True in [t.is_alive() for t in self.threads]
+
+    def idle(self):
+        return False not in [i.is_set() for i in self.idles]
+
+    def done(self):
+        return self.queue.empty()
+
+    def enqueue(self, func, *args, **kwargs):
+        self.logger.Log(Severity.INFO, "New job [{0}] added to the WorkPool".format(func.__name__))
+        self.queue.put((func, args, kwargs))
