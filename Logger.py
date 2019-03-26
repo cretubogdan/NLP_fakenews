@@ -1,4 +1,3 @@
-from __future__ import with_statement
 from threading import RLock
 import os
 import time
@@ -45,9 +44,9 @@ class Logger:
         
         Logger.lock.release()
 
-    def __del(self)__:
+    def __del__(self):
         self.Close()
-        
+ 
     @staticmethod
     def TimeNow():
         return time.strftime('%d-%m-%Y %H:%M:%S', time.localtime())
@@ -57,5 +56,5 @@ class Logger:
         Logger.file.write("[{0}]:[{1}]:{2}\n".format(Logger.TimeNow(), level.name, message))
         Logger.lock.release()
 
-    def Close():
+    def Close(self):
         Logger.file.close()

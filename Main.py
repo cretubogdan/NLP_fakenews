@@ -1,6 +1,7 @@
 from Logger import *
 from DbManager import *
 from WorkPool import *
+from Reader import *
 
 collection_name = 'FakeNews'
 
@@ -35,8 +36,15 @@ def test_wp():
     for i in wp.get_results():
         print(i)
 
+def test_csv():
+    csv = Reader()
+    csv.Read()
+    print(csv.GetHeader())
+    print(csv.GetBody()[0])
+    print(csv.GetBody()[-1])
+
 def main():
-    test_wp()
+    test_csv()
 
 if __name__ == '__main__':
     main()
