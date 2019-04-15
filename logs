@@ -1,0 +1,5 @@
+[16-04-2019 01:53:23]:[INFO]:Logger initialization succesfully at the path: /home/bogcretu/Desktop/workspace/NLP_fakenews/logs
+[16-04-2019 01:53:23]:[INFO]:Reader module initialization succesfully for the path: /home/bogcretu/Desktop/task2/datasets/liar_dataset/test.tsv
+[16-04-2019 01:53:23]:[INFO]:File type is tsv
+[16-04-2019 01:53:23]:[INFO]:Start reading file
+[16-04-2019 01:53:23]:[INFO]:Finished reading file - 1266 lines were read
