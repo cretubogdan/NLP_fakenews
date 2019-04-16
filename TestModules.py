@@ -44,7 +44,11 @@ def test_csv():
     print(csv.GetBody()[-1])
 
 def main():
-    test_csv()
+    if True:
+        test_logger()
+        test_dbmanager()
+        test_wp()
+        test_csv()
 
 if __name__ == '__main__':
     main()

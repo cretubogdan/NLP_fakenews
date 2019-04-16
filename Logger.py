@@ -44,9 +44,6 @@ class Logger:
         
         Logger.lock.release()
 
-    def __del__(self):
-        self.Close()
- 
     @staticmethod
     def TimeNow():
         return time.strftime('%d-%m-%Y %H:%M:%S', time.localtime())
