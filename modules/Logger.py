@@ -12,13 +12,20 @@ class Severity(Enum):
 
 class Logger:
     ENV_VAR_PATH_NAME = 'LOGGER_PATH'
+    DO_DEBUG = 'DEBUG'
     file = None
     lock = RLock()
+    do_debug = True
 
     def __init__(self):
         Logger.lock.acquire()
-        
+
         if None == Logger.file:
+            try:
+                Logger.do_debug = (os.environ[Logger.DO_DEBUG] == "TRUE")
+            except:
+                pass
+
             error = 0
             try:
                 path = os.environ[Logger.ENV_VAR_PATH_NAME]
@@ -50,7 +57,8 @@ class Logger:
 
     def Log(self, level, message):
         Logger.lock.acquire()
-        Logger.file.write("[{0}]:[{1}]:{2}\n".format(Logger.TimeNow(), level.name, message))
+        if Logger.do_debug == True or level != Severity.INFO:
+            Logger.file.write("[{0}]:[{1}]:{2}\n".format(Logger.TimeNow(), level.name, message))
         Logger.lock.release()
 
     def Close(self):

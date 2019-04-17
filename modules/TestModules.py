@@ -31,7 +31,7 @@ def test_worker(n):
 def test_wp():
     wp = WorkPool()
     wp.run()
-    for i in range(1000):
+    for i in range(10):
         wp.enqueue(test_worker, i)
     for i in wp.get_results():
         print(i)
@@ -39,9 +39,13 @@ def test_wp():
 def test_csv():
     csv = Reader()
     csv.Read()
-    print(csv.GetHeader())
-    print(csv.GetBody()[0])
-    print(csv.GetBody()[-1])
+    print(csv.GetHeaderTrain())
+    print(csv.GetBodyTrain()[0])
+    print(csv.GetBodyTrain()[-1])
+
+    print(csv.GetHeaderTest())
+    print(csv.GetBodyTest()[0])
+    print(csv.GetBodyTest()[-1])
 
 def main():
     if True:
