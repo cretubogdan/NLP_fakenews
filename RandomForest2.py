@@ -18,26 +18,46 @@ QUERY = 3
 USER = 4
 TEXT = 5
 
-def DoClean(review):
-    review = re.sub("[^a-zA-Z]"," ", review)
-    review = review.lower().split()
+logger = Logger()
+wp = WorkPool()
+wp.run()
 
-    stops = set(stopwords.words("english"))
-    words = [w for w in review if not w in stops]
+header = None
+train = None
+test = None
 
-    review = " ".join(words)
-
-    return review
-
-def main():
+def DoRead():
     csv = Reader()
+    logger.Log(Severity.INFO, "Starting reading datasets")
     csv.Read()
+    logget.Log(Severity.INFO, "Finished reading datasets")
 
     header = csv.GetHeaderTrain()
     train = csv.GetBodyTrain()
     test = csv.GetBodyTest()
 
-    print("Am terminat de citit")
+def DoCleanHelper(reviews):
+    stops = set(stopwords.words("english"))
+
+    for review in reviews:
+        review = re.sub("[^a-zA-Z]"," ", review)
+        review = review.lower().split()
+
+        words = [w for w in review if not w in stops]
+
+        review = " ".join(words)
+
+    return reviews
+
+def DoClean():
+    train_copy = []
+    test_copy = []
+    for i in range(10):
+        
+
+def main():
+    DoRead()
+    DoClean()
 
     clean_train = []
     train_labeled = []
@@ -51,7 +71,7 @@ def main():
 
     print("Am terminat de facut dictionarul")
 
-    forest = RandomForestClassifier(n_estimators = 5000)
+    forest = RandomForestClassifier(n_estimators = 10000)
     forest = forest.fit(train_data_features, train_labeled)
 
     print("Am terminat de aplicat random forest")

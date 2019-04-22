@@ -84,6 +84,17 @@ class WorkPool:
         self.logger.Log(Severity.INFO, "WorkPool started running");
         return True
 
+    def do_tasks(self, func, *args, **kwargs):
+        def func_wrapper(*args, **kwargs):
+            step = int(len(args[0]) / self.thread_count)
+            count = 0
+            while count + step < len(args[0]):
+                self.enqueue(func, args[0][count:count+step])
+                count += step
+            self.enqueue(func, args[0][count:len(args[0])])
+
+            return self.get_results()
+        return func_wrapper
 
     def get_results(self):
         results = []

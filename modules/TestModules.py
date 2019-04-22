@@ -4,6 +4,9 @@ from WorkPool import *
 from Reader import *
 
 collection_name = 'FakeNews'
+wp = WorkPool()
+wp.run()
+logger = Logger()
 
 def test_dbmanager():
     db = DbManager(collection_name)
@@ -36,6 +39,13 @@ def test_wp():
     for i in wp.get_results():
         print(i)
 
+@wp.do_tasks
+def test_wp_2(vec):
+    new_vec = []
+    for elem in vec:
+        new_vec.append(elem + "LOL")
+    return new_vec
+
 def test_csv():
     csv = Reader()
     csv.Read()
@@ -50,9 +60,15 @@ def test_csv():
 def main():
     if True:
         test_logger()
+    if False:
         test_dbmanager()
         test_wp()
         test_csv()
+    if True:
+        vec = ["ana", "are", "mere", "si", "pere", "multe", "dar", "totusi", "mi-e", "somn", "si", "as", "vrea", "sa", "ma", "culc", ",", "e", "cam", "tarzior", "!", "!"]
+        vec = test_wp_2(vec)
+        print(vec)
 
 if __name__ == '__main__':
     main()
+    wp.abort()

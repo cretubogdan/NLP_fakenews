@@ -1,85 +1,61 @@
-[17-04-2019 03:23:35]:[INFO]:Logger initialization succesfully at the path: /home/bogcretu/Desktop/workspace/NLP_fakenews/modules/logs
-[17-04-2019 03:23:35]:[INFO]:Test_INFO
-[17-04-2019 03:23:35]:[WARNING]:TEST_WARNING
-[17-04-2019 03:23:35]:[ERROR]:Test_ERROR
-[17-04-2019 03:23:35]:[FATAL]:Test_FATAL
-[17-04-2019 03:23:35]:[INFO]:Successfully connected to the DB: localhost:27017
-[17-04-2019 03:23:35]:[INFO]:New insert into the DB: SA:FakeNews
-[17-04-2019 03:23:35]:[INFO]:New bulk insert into the DB: SA:FakeNews
-[17-04-2019 03:23:35]:[INFO]:New find into the DB: SA:FakeNews
-[17-04-2019 03:23:35]:[INFO]:New find bulk into the DB: SA:FakeNews
-[17-04-2019 03:23:35]:[INFO]:New bulk delete from DB: SA:FakeNews
-[17-04-2019 03:23:35]:[INFO]:Db connection will be closed
-[17-04-2019 03:23:35]:[INFO]:WorkPool initialization succesfully with # of cores 7
-[17-04-2019 03:23:35]:[INFO]:WorkPool will be started with # of cores 7
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-0] initialization succesfully
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-0] started
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-1] initialization succesfully
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-1] started
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-2] initialization succesfully
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-2] started
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-3] initialization succesfully
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-3] started
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-4] initialization succesfully
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-4] started
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-5] initialization succesfully
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-5] started
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-6] initialization succesfully
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-6] started
-[17-04-2019 03:23:35]:[INFO]:WorkPool started running
-[17-04-2019 03:23:35]:[INFO]:New job [test_worker] added to the WorkPool
-[17-04-2019 03:23:35]:[INFO]:New job [test_worker] added to the WorkPool
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-3] got a new job to do
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-3] started job test_worker
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-3] finished job
-[17-04-2019 03:23:35]:[INFO]:New job [test_worker] added to the WorkPool
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-3] got a new job to do
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-3] started job test_worker
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-3] finished job
-[17-04-2019 03:23:35]:[INFO]:New job [test_worker] added to the WorkPool
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-5] got a new job to do
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-5] started job test_worker
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-5] finished job
-[17-04-2019 03:23:35]:[INFO]:New job [test_worker] added to the WorkPool
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-3] got a new job to do
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-3] started job test_worker
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-3] finished job
-[17-04-2019 03:23:35]:[INFO]:New job [test_worker] added to the WorkPool
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-5] got a new job to do
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-5] started job test_worker
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-5] finished job
-[17-04-2019 03:23:35]:[INFO]:New job [test_worker] added to the WorkPool
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-3] got a new job to do
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-3] started job test_worker
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-3] finished job
-[17-04-2019 03:23:35]:[INFO]:New job [test_worker] added to the WorkPool
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-5] got a new job to do
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-5] started job test_worker
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-5] finished job
-[17-04-2019 03:23:35]:[INFO]:New job [test_worker] added to the WorkPool
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-5] got a new job to do
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-5] started job test_worker
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-5] finished job
-[17-04-2019 03:23:35]:[INFO]:New job [test_worker] added to the WorkPool
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-3] got a new job to do
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-3] started job test_worker
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-3] finished job
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-5] got a new job to do
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-5] started job test_worker
-[17-04-2019 03:23:35]:[INFO]:Worker [#id-5] finished job
-[17-04-2019 03:23:35]:[INFO]:WorkPool starts aborting for 7 workers
-[17-04-2019 03:23:35]:[INFO]:WorkPool made a new abort
-[17-04-2019 03:23:35]:[INFO]:WorkPool made a new abort
-[17-04-2019 03:23:35]:[INFO]:WorkPool made a new abort
-[17-04-2019 03:23:35]:[INFO]:WorkPool made a new abort
-[17-04-2019 03:23:35]:[INFO]:WorkPool made a new abort
-[17-04-2019 03:23:35]:[INFO]:WorkPool made a new abort
-[17-04-2019 03:23:35]:[INFO]:WorkPool made a new abort
-[17-04-2019 03:23:35]:[INFO]:Reader module initialization succesfully for the path_train: /home/bogcretu/Desktop/workspace/datasets/trainingandtestdata/train.csv
-[17-04-2019 03:23:35]:[INFO]:File type_train is csv
-[17-04-2019 03:23:35]:[INFO]:Reader module initialization succesfully for the path_test: /home/bogcretu/Desktop/workspace/datasets/trainingandtestdata/test.csv
-[17-04-2019 03:23:35]:[INFO]:File type_test is csv
-[17-04-2019 03:23:35]:[INFO]:Start reading file /home/bogcretu/Desktop/workspace/datasets/trainingandtestdata/train.csv
-[17-04-2019 03:23:40]:[INFO]:Finished reading file - 1599999 lines were read
-[17-04-2019 03:23:40]:[INFO]:Start reading file /home/bogcretu/Desktop/workspace/datasets/trainingandtestdata/test.csv
-[17-04-2019 03:23:40]:[INFO]:Finished reading file - 497 lines were read
+[22-04-2019 04:31:27]:[INFO]:Logger initialization succesfully at the path: /home/bogcretu/Desktop/workspace/NLP_fakenews/modules/logs
+[22-04-2019 04:31:27]:[INFO]:WorkPool initialization succesfully with # of cores 7
+[22-04-2019 04:31:27]:[INFO]:WorkPool will be started with # of cores 7
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-0] initialization succesfully
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-0] started
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-1] initialization succesfully
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-1] started
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-2] initialization succesfully
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-2] started
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-3] initialization succesfully
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-3] started
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-4] initialization succesfully
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-4] started
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-5] initialization succesfully
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-5] started
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-6] initialization succesfully
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-6] started
+[22-04-2019 04:31:27]:[INFO]:WorkPool started running
+[22-04-2019 04:31:27]:[INFO]:Test_INFO
+[22-04-2019 04:31:27]:[WARNING]:TEST_WARNING
+[22-04-2019 04:31:27]:[ERROR]:Test_ERROR
+[22-04-2019 04:31:27]:[FATAL]:Test_FATAL
+[22-04-2019 04:31:27]:[INFO]:New job [test_wp_2] added to the WorkPool
+[22-04-2019 04:31:27]:[INFO]:New job [test_wp_2] added to the WorkPool
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-3] got a new job to do
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-3] started job test_wp_2
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-3] finished job
+[22-04-2019 04:31:27]:[INFO]:New job [test_wp_2] added to the WorkPool
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-5] got a new job to do
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-5] started job test_wp_2
+[22-04-2019 04:31:27]:[INFO]:New job [test_wp_2] added to the WorkPool
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-5] finished job
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-1] got a new job to do
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-1] started job test_wp_2
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-1] finished job
+[22-04-2019 04:31:27]:[INFO]:New job [test_wp_2] added to the WorkPool
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-4] got a new job to do
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-4] started job test_wp_2
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-4] finished job
+[22-04-2019 04:31:27]:[INFO]:New job [test_wp_2] added to the WorkPool
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-5] got a new job to do
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-5] started job test_wp_2
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-5] finished job
+[22-04-2019 04:31:27]:[INFO]:New job [test_wp_2] added to the WorkPool
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-1] got a new job to do
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-1] started job test_wp_2
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-1] finished job
+[22-04-2019 04:31:27]:[INFO]:New job [test_wp_2] added to the WorkPool
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-0] got a new job to do
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-0] started job test_wp_2
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-0] finished job
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-1] got a new job to do
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-1] started job test_wp_2
+[22-04-2019 04:31:27]:[INFO]:Worker [#id-1] finished job
+[22-04-2019 04:31:27]:[INFO]:WorkPool made a new abort
+[22-04-2019 04:31:27]:[INFO]:WorkPool made a new abort
+[22-04-2019 04:31:27]:[INFO]:WorkPool made a new abort
+[22-04-2019 04:31:27]:[INFO]:WorkPool made a new abort
+[22-04-2019 04:31:27]:[INFO]:WorkPool made a new abort
+[22-04-2019 04:31:27]:[INFO]:WorkPool made a new abort
+[22-04-2019 04:31:27]:[INFO]:WorkPool made a new abort
