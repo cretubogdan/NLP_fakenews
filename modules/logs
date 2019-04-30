@@ -1,61 +1,35 @@
-[22-04-2019 04:31:27]:[INFO]:Logger initialization succesfully at the path: /home/bogcretu/Desktop/workspace/NLP_fakenews/modules/logs
-[22-04-2019 04:31:27]:[INFO]:WorkPool initialization succesfully with # of cores 7
-[22-04-2019 04:31:27]:[INFO]:WorkPool will be started with # of cores 7
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-0] initialization succesfully
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-0] started
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-1] initialization succesfully
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-1] started
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-2] initialization succesfully
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-2] started
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-3] initialization succesfully
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-3] started
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-4] initialization succesfully
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-4] started
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-5] initialization succesfully
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-5] started
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-6] initialization succesfully
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-6] started
-[22-04-2019 04:31:27]:[INFO]:WorkPool started running
-[22-04-2019 04:31:27]:[INFO]:Test_INFO
-[22-04-2019 04:31:27]:[WARNING]:TEST_WARNING
-[22-04-2019 04:31:27]:[ERROR]:Test_ERROR
-[22-04-2019 04:31:27]:[FATAL]:Test_FATAL
-[22-04-2019 04:31:27]:[INFO]:New job [test_wp_2] added to the WorkPool
-[22-04-2019 04:31:27]:[INFO]:New job [test_wp_2] added to the WorkPool
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-3] got a new job to do
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-3] started job test_wp_2
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-3] finished job
-[22-04-2019 04:31:27]:[INFO]:New job [test_wp_2] added to the WorkPool
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-5] got a new job to do
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-5] started job test_wp_2
-[22-04-2019 04:31:27]:[INFO]:New job [test_wp_2] added to the WorkPool
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-5] finished job
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-1] got a new job to do
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-1] started job test_wp_2
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-1] finished job
-[22-04-2019 04:31:27]:[INFO]:New job [test_wp_2] added to the WorkPool
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-4] got a new job to do
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-4] started job test_wp_2
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-4] finished job
-[22-04-2019 04:31:27]:[INFO]:New job [test_wp_2] added to the WorkPool
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-5] got a new job to do
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-5] started job test_wp_2
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-5] finished job
-[22-04-2019 04:31:27]:[INFO]:New job [test_wp_2] added to the WorkPool
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-1] got a new job to do
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-1] started job test_wp_2
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-1] finished job
-[22-04-2019 04:31:27]:[INFO]:New job [test_wp_2] added to the WorkPool
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-0] got a new job to do
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-0] started job test_wp_2
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-0] finished job
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-1] got a new job to do
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-1] started job test_wp_2
-[22-04-2019 04:31:27]:[INFO]:Worker [#id-1] finished job
-[22-04-2019 04:31:27]:[INFO]:WorkPool made a new abort
-[22-04-2019 04:31:27]:[INFO]:WorkPool made a new abort
-[22-04-2019 04:31:27]:[INFO]:WorkPool made a new abort
-[22-04-2019 04:31:27]:[INFO]:WorkPool made a new abort
-[22-04-2019 04:31:27]:[INFO]:WorkPool made a new abort
-[22-04-2019 04:31:27]:[INFO]:WorkPool made a new abort
-[22-04-2019 04:31:27]:[INFO]:WorkPool made a new abort
+[30-04-2019 01:51:01]:[INFO]:Logger initialization succesfully at the path: /Users/mihnea-bogdancretu/Desktop/licenta/NLP_fakenews/modules/logs
+[30-04-2019 01:51:01]:[INFO]:WorkPool will be started with # of cores 7
+[30-04-2019 01:51:01]:[INFO]:Worker [#id-0] initialization succesfully
+[30-04-2019 01:51:01]:[INFO]:Worker [#id-0] started
+[30-04-2019 01:51:01]:[INFO]:Worker [#id-1] initialization succesfully
+[30-04-2019 01:51:01]:[INFO]:Worker [#id-1] started
+[30-04-2019 01:51:01]:[INFO]:Worker [#id-2] initialization succesfully
+[30-04-2019 01:51:01]:[INFO]:Worker [#id-2] started
+[30-04-2019 01:51:01]:[INFO]:Worker [#id-3] initialization succesfully
+[30-04-2019 01:51:01]:[INFO]:Worker [#id-3] started
+[30-04-2019 01:51:01]:[INFO]:Worker [#id-4] initialization succesfully
+[30-04-2019 01:51:01]:[INFO]:Worker [#id-4] started
+[30-04-2019 01:51:01]:[INFO]:Worker [#id-5] initialization succesfully
+[30-04-2019 01:51:01]:[INFO]:Worker [#id-5] started
+[30-04-2019 01:51:01]:[INFO]:Worker [#id-6] initialization succesfully
+[30-04-2019 01:51:01]:[INFO]:Worker [#id-6] started
+[30-04-2019 01:51:01]:[INFO]:WorkPool started running
+[30-04-2019 01:51:01]:[INFO]:WorkPool initialization succesfully with # of cores 7
+[30-04-2019 01:51:01]:[INFO]:WorkPool made a new abort
+[30-04-2019 01:51:01]:[INFO]:WorkPool made a new abort
+[30-04-2019 01:51:01]:[INFO]:WorkPool made a new abort
+[30-04-2019 01:51:01]:[INFO]:WorkPool made a new abort
+[30-04-2019 01:51:01]:[INFO]:WorkPool made a new abort
+[30-04-2019 01:51:01]:[INFO]:WorkPool made a new abort
+[30-04-2019 01:51:01]:[INFO]:WorkPool made a new abort
+[30-04-2019 01:51:01]:[INFO]:Reader module initialization succesfully for the path_train: /Users/mihnea-bogdancretu/Desktop/licenta/trainingandtestdata/dataset.csv
+[30-04-2019 01:51:01]:[INFO]:File type_train is csv
+[30-04-2019 01:51:01]:[INFO]:WorkPool starts aborting for 7 workers
+[30-04-2019 01:51:01]:[INFO]:WorkPool made a new abort
+[30-04-2019 01:51:01]:[INFO]:WorkPool made a new abort
+[30-04-2019 01:51:01]:[INFO]:WorkPool made a new abort
+[30-04-2019 01:51:01]:[INFO]:WorkPool made a new abort
+[30-04-2019 01:51:01]:[INFO]:WorkPool made a new abort
+[30-04-2019 01:51:01]:[INFO]:WorkPool made a new abort
+[30-04-2019 01:51:01]:[INFO]:WorkPool made a new abort

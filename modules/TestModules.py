@@ -1,74 +1,55 @@
 from Logger import *
-from DbManager import *
 from WorkPool import *
 from Reader import *
 
-collection_name = 'FakeNews'
+l = Logger()
 wp = WorkPool()
-wp.run()
-logger = Logger()
+wp.abort()
+r = Reader()
 
-def test_dbmanager():
-    db = DbManager(collection_name)
-    db.Insert({'test':'merge'})
-    db.InsertBulk([{'test2':'merge2'}, {'test3':'merge3'}])
-    ret = db.Find({"test2":"merge2"})
-    print(list(ret))
-    ret = db.FindBulk()
-    print(list(ret))
-    db.DeleteBulk({})
+def check_logger():
+    logger1 = Logger()
+    logger2 = Logger()
 
+    logger1.log(Severity.INFO, "INFO MERGE")
+    logger1.log(Severity.ERROR, "ERROR MERGE")
+    logger2.log(Severity.FATAL, "FATAL MERGE")
+    logger2.log(Severity.WARNING, "WARNING MERGE")
 
-def test_logger():
-    logger_1 = Logger()
-    logger_2 = Logger()
-
-    logger_1.Log(Severity.INFO, "Test_INFO")
-    logger_2.Log(Severity.WARNING, "TEST_WARNING")
-    logger_1.Log(Severity.ERROR, "Test_ERROR")
-    logger_2.Log(Severity.FATAL, "Test_FATAL")
-
-def test_worker(n):
-    return n*2
-
-def test_wp():
-    wp = WorkPool()
-    wp.run()
-    for i in range(10):
-        wp.enqueue(test_worker, i)
-    for i in wp.get_results():
-        print(i)
+    logger1.close()
 
 @wp.do_tasks
-def test_wp_2(vec):
-    new_vec = []
-    for elem in vec:
-        new_vec.append(elem + "LOL")
-    return new_vec
+def helper_check_workpool(arg):
+    new_arg = []
+    for elem in arg:
+        new_arg.append(elem + "LOL")
+    return new_arg
 
-def test_csv():
-    csv = Reader()
-    csv.Read()
-    print(csv.GetHeaderTrain())
-    print(csv.GetBodyTrain()[0])
-    print(csv.GetBodyTrain()[-1])
+def check_workpool():
+    arg = ["ana", "are", "mere", "si", "pere", "multe", "dar", "totusi", "mi-e", "somn", "si", "as", "vrea", "sa", "ma", "culc", ",", "e", "cam", "tarzior", "!", "!"]
+    print(arg)
+    new_arg = helper_check_workpool(arg)
+    print(new_arg)
+    wp.abort()
 
-    print(csv.GetHeaderTest())
-    print(csv.GetBodyTest()[0])
-    print(csv.GetBodyTest()[-1])
+def check_reader():
+    r.read()
+    print(r.path)
+    print(r.header)
+    print(r.body[0])
+    print(r.body[-1])
+    print(r.rows)
+    print(r.filetype)
+    print(r.train[0])
+    print(r.test[0])
+    print(len(r.train))
+    print(len(r.test))
 
 def main():
-    if True:
-        test_logger()
-    if False:
-        test_dbmanager()
-        test_wp()
-        test_csv()
-    if True:
-        vec = ["ana", "are", "mere", "si", "pere", "multe", "dar", "totusi", "mi-e", "somn", "si", "as", "vrea", "sa", "ma", "culc", ",", "e", "cam", "tarzior", "!", "!"]
-        vec = test_wp_2(vec)
-        print(vec)
+    #check_logger()
+    #check_workpool()
+    #check_reader()
+    print("Uncomment above")
 
 if __name__ == '__main__':
     main()
-    wp.abort()
