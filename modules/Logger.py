@@ -59,6 +59,7 @@ class Logger:
     def log(self, level, message):
         Logger.lock.acquire()
         if Logger.do_debug == True or level != Severity.INFO:
+            print("[{0}]:[{1}]:{2}".format(Logger.__timenow(), level.name, message))
             Logger.file.write("[{0}]:[{1}]:{2}\n".format(Logger.__timenow(), level.name, message))
         Logger.lock.release()
 

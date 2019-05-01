@@ -1,11 +1,13 @@
 from Logger import *
 from WorkPool import *
 from Reader import *
+from DBManager import *
 
 l = Logger()
 wp = WorkPool()
 wp.abort()
 r = Reader()
+db = DBManager()
 
 def check_logger():
     logger1 = Logger()
@@ -45,11 +47,28 @@ def check_reader():
     print(len(r.train))
     print(len(r.test))
 
+def check_db():
+    collection = "models_dump"
+    model1 = {"name":"model1", "data":"asfasfasa11"}
+    model2 = {"name":"model2", "data":"asfasfasa22"}
+    db.insert(model1, collection)
+    db.insert(model2, collection)
+
+    query = {"name":"model2"}
+    new_model = db.find(query, collection)
+    for model in new_model:
+        print(model)
+
+    db.delete(query, collection)
+
+    db.drop(collection)
+
+
 def main():
     #check_logger()
     #check_workpool()
     #check_reader()
-    print("Uncomment above")
+    check_db()
 
 if __name__ == '__main__':
     main()

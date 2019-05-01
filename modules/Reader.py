@@ -1,4 +1,5 @@
 import csv
+import sys
 import os
 import random
 from Logger import *
@@ -20,6 +21,7 @@ class Reader:
     def __init__(self):
         if None == Reader.path:
             try:
+                csv.field_size_limit(sys.maxsize)
                 Reader.path = os.environ[Reader.ENV_VAR_DATASET]
                 Reader.filetype = Reader.path.rsplit(".", 1)[1].lower()
                 Reader.logger.log(Severity.INFO, "Reader module initialization succesfully for the path_train: {0}".format(Reader.path))
@@ -29,6 +31,7 @@ class Reader:
 
     def read(self):
         Reader.logger.log(Severity.INFO, "Start reading file {0}".format(Reader.path))
+        
         try:
             with open(Reader.path) as dataset:
                 reader = None
@@ -46,9 +49,9 @@ class Reader:
                     Reader.rows += 1
             Reader.rows -= 1
 
-            Reader.logger.log(Severity.INFO, "Finished reading file - {0} lines were read".format(Reader.rows))
+            Reader.logger.log(Severity.INFO, "Finished reading file {0} lines were read".format(Reader.rows))
         except:
-            Reader.logger.log(Severity.ERROR, "Bad path for file - {0}".format(Reader.path))
+            Reader.logger.log(Severity.ERROR, "Bad path for file {0}".format(Reader.path))
 
         random.shuffle(Reader.body)
         Reader.train = Reader.body[0:int(Reader.train_percent * Reader.rows)]
