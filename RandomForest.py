@@ -20,7 +20,8 @@ LABEL = 4
 NAME = "name"
 DATA = "data"
 
-estimators = 10000 #debug
+estimators = 1000
+#estimators = 100 #debug
 stop_words = None
 
 vectorizer = None
@@ -28,8 +29,7 @@ data_features = None
 forest = None
 loaded_model = None
 
-collection_dump_models = "models_dump"
-dump_name = "randomforest_fake-news"
+collection_dump_models = "models_dump_randomforest"
 
 l = Logger()
 wp = WorkPool()
@@ -91,7 +91,7 @@ def do_dict():
 def do_train():
     global l, forest, r, estimators
     l.log(Severity.INFO, "Random forest: started train")
-    forest = RandomForestClassifier(n_estimators = estimators)
+    forest = RandomForestClassifier(n_estimators = estimators, n_jobs = -1)
     data_labels = get_polarity(r.train)
     forest = forest.fit(data_features, data_labels)
     l.log(Severity.INFO, "Random forest: finished traing")
@@ -99,17 +99,15 @@ def do_train():
 def do_save():
     global l, forest, collection_dump_models, dump_name
     l.log(Severity.INFO, "Started saving model to db")
-    tmp = pickle.dumps(forest)
-    data = {NAME : dump_name, DATA : tmp}
-    db.insert(data, collection_dump_models)
+    dump = pickle.dumps(forest)
+    db.grid_insert(dump, collection_dump_models)
     l.log(Severity.INFO, "Finished saving model to db")
 
 def do_load():
     global l, loaded_model
     l.log(Severity.INFO, "Started loading model from db")
-    query = {NAME : dump_name}
-    model = db.find(query, collection_dump_models)[0]
-    loaded_model = pickle.loads(model[DATA])
+    model = db.grid_find(collection_dump_models)
+    loaded_model = pickle.loads(model)
     l.log(Severity.INFO, "Finished loading model from db")
 
 def get_prediction_percent(predict, real):

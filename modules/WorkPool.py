@@ -24,18 +24,18 @@ class Worker(Thread):
         while not self.abort.is_set():
             try:
                 func, args, kwargs = self.queue.get(False)
-                self.logger.log(Severity.INFO, "Worker [{0}] got a new job to do".format(self.name))
+                #self.logger.log(Severity.INFO, "Worker [{0}] got a new job to do".format(self.name))
                 self.idle.clear()
             except:
                 self.idle.set()
                 continue
 
             try:
-                self.logger.log(Severity.INFO, "Worker [{0}] started job {1}".format(self.name, func.__name__))
+                #self.logger.log(Severity.INFO, "Worker [{0}] started job {1}".format(self.name, func.__name__))
                 result = func(*args, **kwargs)
                 if result is not None:
                     self.results.put(result)
-                    self.logger.log(Severity.INFO, "Worker [{0}] finished job".format(self.name))
+                    #self.logger.log(Severity.INFO, "Worker [{0}] finished job".format(self.name))
             except:
                 self.logger.log(Severity.ERROR, "Worker [{0}] couldn't finish job {1}".format(self.name, func.__name__))
             finally:
@@ -127,5 +127,5 @@ class WorkPool:
         return self.queue.empty()
 
     def __enqueue(self, func, *args, **kwargs):
-        self.logger.log(Severity.INFO, "New job [{0}] added to the WorkPool".format(func.__name__))
+        #self.logger.log(Severity.INFO, "New job [{0}] added to the WorkPool".format(func.__name__))
         self.queue.put((func, args, kwargs))

@@ -63,12 +63,24 @@ def check_db():
 
     db.drop(collection)
 
+def check_db_gridfs():
+    f = open("dump", "rb")
+    tmp = f.read()
+    f.close()
+    db.grid_insert(tmp, "test_dump")
+    res = db.grid_find("test_dump")
+    f = open("dump2", "wb")
+    tmp = f.write(res)
+    f.close()
+
 
 def main():
     #check_logger()
     #check_workpool()
     #check_reader()
-    check_db()
+    #check_db()
+    #check_db_gridfs() //need a binary file named <dump>
+    print("Check above")
 
 if __name__ == '__main__':
     main()
