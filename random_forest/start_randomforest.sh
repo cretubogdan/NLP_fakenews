@@ -3,4 +3,4 @@ export LOGGER_PATH=/Users/mihnea-bogdancretu/Desktop/licenta/NLP_fakenews/random
 export DATASET=/Users/mihnea-bogdancretu/Desktop/licenta/fake-news/train.csv
 export DEBUG=TRUE
 python3 RandomForest.py
-rm -rf *__pycache__
+rm -rf ../modules/__pycache__
