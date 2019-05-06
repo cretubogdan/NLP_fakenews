@@ -40,7 +40,6 @@ def do_init():
     global l, stop_words, collection_dump_models
     l.log(Severity.INFO, "Random forest: started init")
     stop_words = set(stopwords.words('english'))
-    db.drop(collection_dump_models)
     l.log(Severity.INFO, "Random forest: finished init")
 
 def do_read():
