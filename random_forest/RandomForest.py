@@ -5,9 +5,8 @@ from DBManager import *
 from WorkPool import *
 from Reader import *
 
-from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import GridSearchCV #cross validation
 from nltk.corpus import stopwords
 import nltk
 import pickle
@@ -21,13 +20,11 @@ LABEL = 4
 NAME = "name"
 DATA = "data"
 
+MIN_DF = 5
+MAX_DF = 0.8
+
 estimators = 100
 stop_words = None
-
-vectorizer = None
-data_features = None
-forest = None
-loaded_model = None
 
 collection_dump_models = "models_dump_randomforest"
 
@@ -36,19 +33,23 @@ wp = WorkPool()
 r = Reader()
 db = DBManager()
 
+vectorizer = TfidfVectorizer(min_df = MIN_DF, max_df = MAX_DF, use_idf = True)
+tf_idf = None
+model_trained = None
+model_loaded = None
+
 def do_init():
-    global l, stop_words, collection_dump_models
-    l.log(Severity.INFO, "Random forest: started init")
+    global stop_words
+    l.log(Severity.INFO, "Started init")
     stop_words = set(stopwords.words('english'))
-    l.log(Severity.INFO, "Random forest: finished init")
+    l.log(Severity.INFO, "Finished init")
 
 def do_read():
-    global l, r
-    l.log(Severity.INFO, "Random forest: started reading")
+    l.log(Severity.INFO, "Started reading")
     r.read()
     #r.train = r.train[0:90] #debug
     #r.test = r.test[0:10] #debug
-    l.log(Severity.INFO, "Random forest: finished reading")
+    l.log(Severity.INFO, "Finished reading")
 
 @wp.do_tasks
 def do_clean_helper(data):
@@ -59,10 +60,10 @@ def do_clean_helper(data):
 
 def do_clean():
     global l, r
-    l.log(Severity.INFO, "Random forest: started cleaning")
+    l.log(Severity.INFO, "Started cleaning")
     do_clean_helper(r.train)
     do_clean_helper(r.test)
-    l.log(Severity.INFO, "Random forest: finished cleaning")
+    l.log(Severity.INFO, "Finished cleaning")
 
 @wp.do_tasks
 def get_text(data):
@@ -78,76 +79,61 @@ def get_polarity(data):
         to_return.append(d[LABEL])
     return to_return
 
-
-def do_dict():
-    global l, data_features, r, vectorizer
-    l.log(Severity.INFO, "Random forest: started creating dict")
-    vectorizer = CountVectorizer()
-    column_text = get_text(r.train)
-    data_features = vectorizer.fit_transform(column_text).toarray()
-    l.log(Severity.INFO, "Random forest: finished creating dict")
+def do_features():
+    global tf_idf
+    l.log(Severity.INFO, "Started creating dict")
+    train = get_text(r.train)
+    tf_idf = vectorizer.fit_transform(train)
+    l.log(Severity.INFO, "Finished creating dict")
 
 def do_train():
-    global l, forest, r, estimators
-    l.log(Severity.INFO, "Random forest: started train")
+    global tf_idf, model_trained
+    l.log(Severity.INFO, "Started train")
     forest = RandomForestClassifier(n_estimators = estimators, n_jobs = -1)
     data_labels = get_polarity(r.train)
-    forest = forest.fit(data_features, data_labels)
-    l.log(Severity.INFO, "Random forest: finished traing")
+    model_trained = forest.fit(tf_idf, data_labels)
+    l.log(Severity.INFO, "Finished traing")
 
 def do_save():
-    global l, forest, collection_dump_models, dump_name
+    global model_trained
     l.log(Severity.INFO, "Started saving model to db")
-    dump = pickle.dumps(forest)
+    dump = pickle.dumps(model_trained)
     db.grid_insert(dump, collection_dump_models)
     l.log(Severity.INFO, "Finished saving model to db")
 
 def do_load():
-    global l, loaded_model
+    global model_loaded
     l.log(Severity.INFO, "Started loading model from db")
     model = db.grid_find(collection_dump_models)
-    loaded_model = pickle.loads(model)
+    model_loaded = pickle.loads(model)
     l.log(Severity.INFO, "Finished loading model from db")
 
 def get_prediction_percent(predict, real):
     global l
     value = len([i for i, j in zip(predict, real) if i == j])
     value = float(value * 100 / len(predict))
-    l.log(Severity.RESULT, "Random forest: predict percent: {0}".format(value))
+    l.log(Severity.RESULT, "Predict percent: {0}".format(value))
 
 def do_test():
-    global l, r, vectorizer, loaded_model
-    l.log(Severity.INFO, "Random forest: started testing")
+    global model_loaded
+    l.log(Severity.INFO, "Started testing")
     column_text = get_text(r.test)
     test_labels = get_polarity(r.test)
-    test_features = vectorizer.transform(column_text).toarray()
-    results = loaded_model.predict(test_features)
+    test_tf_idf = vectorizer.transform(column_text)
+    results = model_loaded.predict(test_tf_idf)
     get_prediction_percent(list(results), test_labels)
-    l.log(Severity.INFO, "Random forest: finished testing")
-
-def do_cross_validation():
-    global l, forest, r, estimators
-    l.log(Severity.INFO, "Random forest: started cross validation")
-    data_labels = get_polarity(r.train)
-    forest = RandomForestClassifier(n_estimators=100, n_jobs=-1)
-    k_range = [100]
-    param_grid = dict(n_estimators = k_range)
-    grid = GridSearchCV(forest, param_grid, cv=10, scoring='accuracy', n_jobs=-1)
-    grid.fit(data_features, data_labels)
-    l.log(Severity.RESULT, "Random forest: cross validation: {0}".format(grid.cv_results_))
-    l.log(Severity.INFO, "Random forest: finished cross validation")
+    l.log(Severity.INFO, "Finished testing")
 
 
 def main():
     do_init()
     do_read()
     do_clean()
-    do_dict()
-    #do_train()
-    #do_save()
-    #do_load()
-    #do_test()
-    #do_cross_validation()
+    do_features()
+    do_train()
+    do_save()
+    do_load()
+    do_test()
 
 if __name__ == '__main__':
     main()

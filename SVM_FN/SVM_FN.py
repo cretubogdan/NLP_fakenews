@@ -6,7 +6,7 @@ from WorkPool import *
 from Reader import *
 
 from sklearn import svm
-from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.corpus import stopwords
 import nltk
 import pickle
@@ -20,6 +20,9 @@ LABEL = 4
 NAME = "name"
 DATA = "data"
 
+MIN_DF = 5
+MAX_DF = 0.8
+
 stop_words = None
 
 l = Logger()
@@ -27,10 +30,10 @@ wp = WorkPool()
 r = Reader()
 db = DBManager()
 
-vectorizer = None
-data_features = None
-model = None
-loaded_model = None
+vectorizer = TfidfVectorizer(min_df = MIN_DF, max_df = MAX_DF, use_idf = True)
+tf_idf = None
+model_trained = None
+model_loaded = None
 
 collection_dump_models = "models_dump_svm_fn"
 
@@ -75,34 +78,33 @@ def get_polarity(data):
         to_return.append(d[LABEL])
     return to_return
 
-def do_dict():
-    global data_features, vectorizer
+def do_features():
+    global tf_idf
     l.log(Severity.INFO, "Started creating dict")
-    vectorizer = CountVectorizer()
-    column_text = get_text(r.train)
-    data_features = vectorizer.fit_transform(column_text).toarray()
+    train = get_text(r.train)
+    tf_idf = vectorizer.fit_transform(train)
     l.log(Severity.INFO, "Finished creating dict")
 
 def do_train():
-    global model, data_features
+    global tf_idf, model_trained
     l.log(Severity.INFO, "Started train")
-    labels = get_polarity(r.train)
     model = svm.SVC()
-    model.fit(data_features, labels)
+    data_labels = get_polarity(r.train)
+    model_trained = model.fit(tf_idf, data_labels)
     l.log(Severity.INFO, "Finished traing")
 
 def do_save():
-    global model
+    global model_trained
     l.log(Severity.INFO, "Started saving model to db")
-    dump = pickle.dumps(model)
+    dump = pickle.dumps(model_trained)
     db.grid_insert(dump, collection_dump_models)
     l.log(Severity.INFO, "Finished saving model to db")
 
 def do_load():
-    global loaded_model
+    global model_loaded
     l.log(Severity.INFO, "Started loading model from db")
     model = db.grid_find(collection_dump_models)
-    loaded_model = pickle.loads(model)
+    model_loaded = pickle.loads(model)
     l.log(Severity.INFO, "Finished loading model from db")
 
 def get_prediction_percent(predict, real):
@@ -111,20 +113,20 @@ def get_prediction_percent(predict, real):
     l.log(Severity.RESULT, "Predict percent: {0}".format(value))
 
 def do_test():
-    global loaded_model
+    global model_loaded
     l.log(Severity.INFO, "Started testing")
-    test = get_text(r.test)
-    labels = get_polarity(r.test)
-    test_features = vectorizer.transform(test).toarray()
-    results = loaded_model.predict(test_features)
-    get_prediction_percent(results, labels)
+    column_text = get_text(r.test)
+    test_labels = get_polarity(r.test)
+    test_tf_idf = vectorizer.transform(column_text)
+    results = model_loaded.predict(test_tf_idf)
+    get_prediction_percent(list(results), test_labels)
     l.log(Severity.INFO, "Finished testing")
 
 def main():
     do_init()
     do_read()
     do_clean()
-    do_dict()
+    do_features()
     do_train()
     do_save()
     do_load()

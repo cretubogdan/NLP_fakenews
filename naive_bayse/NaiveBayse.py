@@ -39,8 +39,8 @@ def do_init():
 def do_read():
     l.log(Severity.INFO, "Started reading")
     r.read()
-    #r.train = r.train[0:100] #debug
-    #r.test = r.test[0:100] #debug
+    r.train = r.train[0:100] #debug
+    r.test = r.test[0:100] #debug
     l.log(Severity.INFO, "Finished reading")
 
 @wp.do_tasks
@@ -117,8 +117,8 @@ def main():
     do_read()
     do_clean()
     do_features()
-    #do_train()
-    #do_save()
+    do_train()
+    do_save()
     do_load()
     do_test()
 
