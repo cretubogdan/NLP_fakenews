@@ -47,8 +47,8 @@ def do_init():
 def do_read():
     l.log(Severity.INFO, "Started reading")
     r.read()
-    #r.train = r.train[0:90] #debug
-    #r.test = r.test[0:10] #debug
+    #r.train = r.train[0:100] #debug
+    #r.test = r.test[0:100] #debug
     l.log(Severity.INFO, "Finished reading")
 
 @wp.do_tasks
