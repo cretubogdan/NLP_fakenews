@@ -26,11 +26,11 @@ r = Reader()
 db = DBManager()
 
 collection_dump_models = "models_dump_svm_sa"
+collection_dumps_features = "features_dump_svm_sa"
 
 vectorizer = TfidfVectorizer(min_df = MIN_DF, max_df = MAX_DF, use_idf = True)
 tf_idf = None
-model_trained = None
-model_loaded = None
+model = None
 
 def do_init():
     l.log(Severity.INFO, "Started init")
@@ -76,25 +76,30 @@ def do_features():
     l.log(Severity.INFO, "Finished creating features")
 
 def do_train():
-    global tf_idf, model_trained
+    global tf_idf, model
     l.log(Severity.INFO, "Started train")
     labels = get_labels(r.train)
-    model_trained = svm.SVC()
-    model_trained.fit(tf_idf, labels)
+    model = svm.SVC()
+    model.fit(tf_idf, labels)
     l.log(Severity.INFO, "Finished traing")
 
 def do_save():
-    global model_trained
+    global model, vectorizer
     l.log(Severity.INFO, "Started saving model to db")
-    dump = pickle.dumps(model_trained)
+    #db.drop_dumps() #debug
+    dump = pickle.dumps(model)
     db.grid_insert(dump, collection_dump_models)
+    dump = pickle.dumps(vectorizer)
+    db.grid_insert(dump, collection_dumps_features)
     l.log(Severity.INFO, "Finished saving model to db")
 
 def do_load():
-    global model_loaded
+    global model, vectorizer
     l.log(Severity.INFO, "Started loading model from db")
-    model = db.grid_find(collection_dump_models)
-    model_loaded = pickle.loads(model)
+    model_binary = db.grid_find(collection_dump_models)
+    model = pickle.loads(model_binary)
+    features = db.grid_find(collection_dumps_features)
+    vectorizer = pickle.loads(features)
     l.log(Severity.INFO, "Finished loading model from db")
 
 def get_prediction_percent(predict, real):
@@ -103,12 +108,12 @@ def get_prediction_percent(predict, real):
     l.log(Severity.RESULT, "Predict percent: {0}".format(value))
 
 def do_test():
-    global model_loaded
+    global model
     l.log(Severity.INFO, "Started testing")
     test = get_text(r.test)
     labels = get_labels(r.test)
     test_tf_idf = vectorizer.transform(test)
-    results = model_loaded.predict(test_tf_idf)
+    results = model.predict(test_tf_idf)
     get_prediction_percent(results, labels)
     l.log(Severity.INFO, "Finished testing")
 

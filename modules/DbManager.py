@@ -8,6 +8,8 @@ class DBManager:
     port = 27017
     db_name = 'fake_news_sa'
     collection_name_dumps = "dumps"
+    fs_chunks = "fs.chunks"
+    fs_files = "fs.files"
     lock = Lock()
     client = None
     db = None
@@ -87,3 +89,8 @@ class DBManager:
         collection = DBManager.__get_collection(collection_name)
         collection.drop()
         DBManager.l.log(Severity.INFO, "Collection <{0}> was dropped".format(collection_name))
+
+    def drop_dumps(self):
+        self.drop(DBManager.collection_name_dumps)
+        self.drop(DBManager.fs_chunks)
+        self.drop(DBManager.fs_files)
