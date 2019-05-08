@@ -53,10 +53,9 @@ def do_read():
 
 @wp.do_tasks
 def do_clean_helper(data):
+    global stop_words
     for d in data:
-        d[TEXT] = re.sub("[^a-zA-Z]"," ", d[TEXT]).lower().split()
-        words = [w for w in d[TEXT] if not w in stop_words]
-        d[TEXT] = " ".join(words)
+        d[TEXT] = d[TEXT].lower()
 
 def do_clean():
     global l, r
@@ -81,17 +80,17 @@ def get_polarity(data):
 
 def do_features():
     global tf_idf
-    l.log(Severity.INFO, "Started creating dict")
+    l.log(Severity.INFO, "Started creating features")
     train = get_text(r.train)
     tf_idf = vectorizer.fit_transform(train)
-    l.log(Severity.INFO, "Finished creating dict")
+    l.log(Severity.INFO, "Finished creating features")
 
 def do_train():
     global tf_idf, model
     l.log(Severity.INFO, "Started train")
-    forest = RandomForestClassifier(n_estimators = estimators, n_jobs = -1)
+    model = RandomForestClassifier(n_estimators = estimators, n_jobs = -1)
     data_labels = get_polarity(r.train)
-    model = forest.fit(tf_idf, data_labels)
+    model.fit(tf_idf, data_labels)
     l.log(Severity.INFO, "Finished traing")
 
 def do_save():

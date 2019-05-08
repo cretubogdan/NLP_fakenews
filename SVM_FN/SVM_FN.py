@@ -54,9 +54,7 @@ def do_read():
 def do_clean_helper(data):
     global stop_words
     for d in data:
-        d[TEXT] = re.sub("[^a-zA-Z]"," ", d[TEXT]).lower().split()
-        words = [w for w in d[TEXT] if not w in stop_words]
-        d[TEXT] = " ".join(words)
+        d[TEXT] = d[TEXT].lower()
 
 def do_clean():
     l.log(Severity.INFO, "Started cleaning")
@@ -80,10 +78,10 @@ def get_polarity(data):
 
 def do_features():
     global tf_idf
-    l.log(Severity.INFO, "Started creating dict")
+    l.log(Severity.INFO, "Started creating features")
     train = get_text(r.train)
     tf_idf = vectorizer.fit_transform(train)
-    l.log(Severity.INFO, "Finished creating dict")
+    l.log(Severity.INFO, "Finished creating features")
 
 def do_train():
     global tf_idf, model
