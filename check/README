@@ -1,0 +1,21 @@
+link_label:
+    structure:
+        link_to_the_news <some spaces> polarity
+        grabbed from [1]
+        not CSV/TSV/etc
+
+create_dataset.py:
+    creates news_sa.csv
+    web-crawler to navigate on all those links from link_label
+    NLP for extracting news for link
+
+news_sa.csv:
+    structure:
+        id, text, polarity
+        polarity = {"positive", "neutral", "negative"}
+        ~900 entries
+        created from link_label using some NLP web-crawler stuff
+        CSV file format
+
+
+https://amiham-singh.github.io [1]
