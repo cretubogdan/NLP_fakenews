@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>SA Fake News</title>
+        <link href="static/style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <header>
+            <div class="row">
+                <ul class="main-nav">
+                    <li class="active"><a href="{{ url_for('home') }}"> HOME </a></li>
+                    <li><a href="{{ url_for('testnews') }}"> TEST NEWS </a></li>
+                    <li><a href="{{ url_for('train') }}"> TRAIN </a></li>
+                    <li><a href="{{ url_for('findnews') }}"> FIND NEWS </a></li>
+                </ul>
+            </div>
+            <div class="hero">
+                <div class="button">
+                    <a href="{{ url_for('signin') }}" class="btn btn-signin"> Sign In </a>
+                    <a href="{{ url_for('signup') }}" class="btn btn-signup"> Sign up </a>
+                </div>
+            </div>
+        </header>
+    </body>
+</html>

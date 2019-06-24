@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>SA Fake News</title>
+        <link href="static/style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <header>
+            <div class="row">
+                <ul class="main-nav">
+                    <li><a href="{{ url_for('home') }}"> HOME </a></li>
+                    <li><a href="{{ url_for('testnews') }}"> TEST NEWS </a></li>
+                    <li><a href="{{ url_for('train') }}"> TRAIN </a></li>
+                    <li class="active"><a href="{{ url_for('findnews') }}"> FIND NEWS </a></li>
+                </ul>
+            </div>
+            <div class="findnews">
+                <h2>Search news</h2>
+                <input class="actionbtn" type="button" id="btn" value="Search">
+                <div class="table_ef" id="news_table"></div>
+            </div>
+        </header>
+    </body>
+    <script src="static/script-findnews.js"></script>
+</html>

@@ -28,7 +28,7 @@ def helper_check_workpool(arg):
     return new_arg
 
 def check_workpool():
-    arg = ["ana", "are", "mere", "si", "pere", "multe", "dar", "totusi", "mi-e", "somn", "si", "as", "vrea", "sa", "ma", "culc", ",", "e", "cam", "tarzior", "!", "!"]
+    arg = ["I", "am", "a", "workpool", "of", "threads", "and", "I", "do", "all", "my", "jobs"]
     print(arg)
     new_arg = helper_check_workpool(arg)
     print(new_arg)

@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>SA Fake News</title>
+        <link href="static/style.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    </head>
+    <body>
+        <header>
+            <div class="row">
+                <ul class="main-nav">
+                    <li><a href="{{ url_for('home') }}"> HOME </a></li>
+                    <li><a href="{{ url_for('testnews') }}"> TEST NEWS </a></li>
+                    <li><a href="{{ url_for('train') }}"> TRAIN </a></li>
+                    <li><a href="{{ url_for('findnews') }}"> FIND NEWS </a></li>
+                </ul>
+            </div>
+            <div class="sign-up">
+                <h2>Sign Up</h2>
+                <div class="sign-up-background">
+                    <div class="textbox">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Username" id="username" value="">
+                    </div>
+                    <div class="textbox">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Password" id="password" value="">
+                    </div>
+                    <div class="textbox">
+                        <i class="fas fa-envelope"></i>
+                        <input type="text" placeholder="Email" id="email" value="">
+                    </div>
+                </div>
+                <input class="actionbtn" type="button" id="btn" value="Sign Up">
+            </div>
+        </header>
+    </body>
+    <script type="text/javascript" src="{{ url_for('static', filename='script-signup.js') }}"></script>
+</html>

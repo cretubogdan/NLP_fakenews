@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>SA Fake News</title>
+        <link href="static/style.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    </head>
+    <body>
+        <header>
+            <div class="row">
+                <ul class="main-nav">
+                    <li><a href="{{ url_for('home') }}"> HOME </a></li>
+                    <li class="active"><a href="{{ url_for('testnews') }}"> TEST NEWS </a></li>
+                    <li><a href="{{ url_for('train') }}"> TRAIN </a></li>
+                    <li><a href="{{ url_for('findnews') }}"> FIND NEWS </a></li>
+                </ul>
+            </div>
+            <div class="test">
+                <h2>Test news</h2>
+                <div class="radio_btns">
+                    <div class="radio_ef">
+                        <input type="radio" name="fn" value="SVM - Fake News" id="rb1"> SVM - Fake News <br>
+                        <input type="radio" name="fn" value="Random Forest - Fake News" id="rb3"> Random Forest - Fake News <br>
+                    </div>
+                    <div class="radio_ef_2">
+                        <input type="radio" name="sa" value="SVM - Sentiment Analysis" id="rb2"> SVM - Sentiment Analisys <br>
+                        <input type="radio" name="sa" value="Naive Bayes - Sentiment Analysis" id="rb4"> Naive Bayes - Sentiment Analisys <br>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <div class="test_news_background">
+                        <div class="textbox_2">
+                            <i class="fas fa-heading"></i>
+                            <input type="text" placeholder="Title" id="title" value="">
+                        </div>
+                        <div class="textbox_2">
+                            <i class="fas fa-user"></i>
+                            <input type="text" placeholder="Author" id="author" value="">
+                        </div>
+                        <div class="textbox_2">
+                            <i class="fas fa-newspaper"></i>
+                            <input type="text" placeholder="Text" id="text" value="">
+                        </div>
+                    </div>
+                <input class="actionbtn" type="button" id="btn" value="Check">
+                <div class="test_logs" id="logs_view"></div>
+            </div>
+        </header>
+    </body>
+    <script src="static/script-testnews.js"></script>
+</html>

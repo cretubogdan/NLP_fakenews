@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>SA Fake News</title>
+        <link href="static/style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <header>
+            <div class="row">
+                <ul class="main-nav">
+                    <li><a href="{{ url_for('home') }}"> HOME </a></li>
+                    <li><a href="{{ url_for('testnews') }}"> TEST NEWS </a></li>
+                    <li class="active"><a href="{{ url_for('train') }}"> TRAIN </a></li>
+                    <li><a href="{{ url_for('findnews') }}"> FIND NEWS </a></li>
+                </ul>
+            </div>
+            <div class="train">
+                <h2>Retrain a model</h2>
+                <div class="radio_ef">
+                    <input type="radio" name="model" value="SVM - Fake News" id="rb1"> SVM - Fake News <br>
+                    <input type="radio" name="model" value="SVM - Sentiment Analysis" id="rb2"> SVM - Sentiment Analisys <br>
+                    <input type="radio" name="model" value="Random Forest - Fake News" id="rb3"> Random Forest - Fake News <br>
+                    <input type="radio" name="model" value="Naive Bayes - Sentiment Analysis" id="rb4"> Naive Bayes - Sentiment Analisys <br>
+                </div>
+                <input class="actionbtn" type="button" id="btn" value="Retrain">
+                <div class="retrain_logs" id="logs_view"></div>
+            </div>
+        </header>
+    </body>
+    <script src="static/script-train.js"></script>
+</html>
