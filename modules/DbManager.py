@@ -67,6 +67,16 @@ class DBManager:
         DBManager.l.log(Severity.INFO, "New find made in collection <{0}>".format(collection_name))
         return ret
 
+    def find_2(self, query, collection_name):
+        collection = DBManager.__get_collection(collection_name)
+        ret = None
+        if query is None:
+            ret = collection.find()
+        else:
+            ret = collection.find({}, query)
+        DBManager.l.log(Severity.INFO, "New find made in collection <{0}>".format(collection_name))
+        return ret
+
     def grid_find(self, collection_name):
         ret = None
         id = None

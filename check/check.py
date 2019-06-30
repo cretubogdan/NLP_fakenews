@@ -26,6 +26,9 @@ wp = WorkPool()
 r = Reader()
 db = DBManager()
 
+dataset = None
+dataset_fn = []
+
 collection_dump_models_fn_rf = "models_dump_randomforest"
 collection_dump_features_fn_rf = "features_dump_randomforest"
 collection_dump_models_sa_nb = "models_dump_naivebayse"
@@ -35,9 +38,6 @@ collection_dump_features_fn_svm = "features_dump_svm_fn"
 collection_dump_models_sa_svm = "models_dump_svm_sa"
 collection_dump_features_sa_svm = "features_dump_svm_sa"
 
-dataset = None
-dataset_fn = []
-
 model_fn_rf = pickle.loads(db.grid_find(collection_dump_models_fn_rf))
 vectorizer_fn_rf = pickle.loads(db.grid_find(collection_dump_features_fn_rf))
 model_sa_nb = pickle.loads(db.grid_find(collection_dump_models_sa_nb))
@@ -46,6 +46,7 @@ model_fn_svm = pickle.loads(db.grid_find(collection_dump_models_fn_svm))
 vectorizer_fn_svm = pickle.loads(db.grid_find(collection_dump_features_fn_svm))
 model_sa_svm = pickle.loads(db.grid_find(collection_dump_models_sa_svm))
 vectorizer_sa_svm = pickle.loads(db.grid_find(collection_dump_features_sa_svm))
+
 
 def do_read():
     global dataset
@@ -102,6 +103,19 @@ def do_sa_svm(news):
     elif result == 4:
         return "negative"
     return "neutral"
+
+count_fake_positive = []
+count_fake_negative = []
+count_fake_neutral = []
+count_not_fake = []
+
+def do_format(key, value):
+    to_ret = ""
+    to_ret += "\"" + key + "\""
+    to_ret += " : "
+    to_ret += "\"" + value + "\""
+
+    return str(to_ret)
 
 def do_check(fn, sa, info):
     global dataset, dataset_fn

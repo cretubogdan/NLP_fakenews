@@ -163,7 +163,7 @@ h1
 {
     width: auto;
     position: absolute;
-    top: 20%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: darkorange;
@@ -388,4 +388,11 @@ th
 {
     background-color:slategrey;
     opacity: 0.65;
+}
+
+.log-in-show
+{
+    background-color: darkorange;
+    color: white;
+    display: inline-block;
 }

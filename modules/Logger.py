@@ -17,6 +17,7 @@ class Logger:
     file = None
     lock = RLock()
     do_debug = True
+    bufsize = 1
 
     def __init__(self):
         Logger.lock.acquire()
@@ -30,7 +31,7 @@ class Logger:
             error = 0
             try:
                 path = os.environ[Logger.ENV_VAR_PATH_NAME]
-                Logger.file = open(path, 'a+')
+                Logger.file = open(path, 'w', buffering=Logger.bufsize)
                 self.log(Severity.INFO, "Logger initialization succesfully at the path: {0}".format(path))
             except:
                 error = 1
@@ -39,7 +40,7 @@ class Logger:
                 try:
                     path = os.getcwd()
                     path += '/logs'
-                    file = open(path, 'a+')
+                    file = open(path, 'w', buffering=Logger.bufsize)
                     self.log(Severity.WARNING, "Env variable {0} was not set. Trying to write in current directory".format(Logger.ENV_VAR_PATH_NAME))
                     self.log(Severity.INFO, "Logger initialization succesfully at the path: {0}".format(path))
                 except:

@@ -34,6 +34,10 @@ wp = WorkPool()
 r = Reader()
 db = DBManager()
 
+MODEL_FILE = "dump_model_rf_fn"
+FEATURES_FILE = "dump_features_rf_fn"
+
+
 vectorizer = TfidfVectorizer(min_df = MIN_DF, max_df = MAX_DF, use_idf = True)
 tf_idf = None
 model = None
@@ -103,6 +107,19 @@ def do_save():
     db.grid_insert(dump, collection_dump_features)
     l.log(Severity.INFO, "Finished saving model to db")
 
+def do_save_2():
+    global model, vectorizer
+    l.log(Severity.INFO, "Started saving model to the files: {0} and {1}".format(MODEL_FILE, FEATURES_FILE))
+    pickle.dumps(model)
+    f = open(MODEL_FILE, "wb")
+    pickle.dump(model, f)
+    f.close()
+    f = open(FEATURES_FILE, "wb")
+    pickle.dump(vectorizer, f)
+    f.close()
+    l.log(Severity.INFO, "Finished saving model to the files: {0} and {1}".format(MODEL_FILE, FEATURES_FILE))
+
+
 def do_load():
     global model, vectorizer
     l.log(Severity.INFO, "Started loading model from db")
@@ -111,6 +128,17 @@ def do_load():
     features = db.grid_find(collection_dump_features)
     vectorizer = pickle.loads(features)
     l.log(Severity.INFO, "Finished loading model from db")
+
+def do_load_2():
+    global model, vectorizer
+    l.log(Severity.INFO, "Started loading model from the files: {0} and {1}".format(MODEL_FILE, FEATURES_FILE))
+    f = open(MODEL_FILE, "rb")
+    model = pickle.load(f)
+    f.close()
+    f = open(FEATURES_FILE, "rb")
+    vectorizer = pickle.load(f)
+    f.close()
+    l.log(Severity.INFO, "Finished loading model from the files: {0} and {1}".format(MODEL_FILE, FEATURES_FILE))
 
 def get_prediction_percent(predict, real):
     global l
@@ -136,6 +164,8 @@ def main():
     do_features()
     do_train()
     do_save()
+    #do_save_2()
+    #do_load_2()
     do_load()
     do_test()
 

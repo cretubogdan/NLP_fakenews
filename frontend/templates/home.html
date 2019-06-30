@@ -5,6 +5,7 @@
     </head>
     <body>
         <header>
+            <div class="log-in-show" id="log-in-show-id"></div>
             <div class="row">
                 <ul class="main-nav">
                     <li class="active"><a href="{{ url_for('home') }}"> HOME </a></li>
@@ -21,4 +22,5 @@
             </div>
         </header>
     </body>
+    <script type="text/javascript" src="{{ url_for('static', filename='script-home.js') }}"></script>
 </html>
