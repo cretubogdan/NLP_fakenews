@@ -22,23 +22,24 @@ collection_news = "news"
 path_logs_retrain = ""
 stop_logs = False
 
-collection_dump_models_fn_rf = "models_dump_randomforest"
-collection_dump_features_fn_rf = "features_dump_randomforest"
-collection_dump_models_sa_nb = "models_dump_naivebayse"
-collection_dump_features_sa_nb = "features_dump_tfidf_naivebayse"
-collection_dump_models_fn_svm = "models_dump_svm_fn"
-collection_dump_features_fn_svm = "features_dump_svm_fn"
-collection_dump_models_sa_svm = "models_dump_svm_sa"
-collection_dump_features_sa_svm = "features_dump_svm_sa"
+if False:
+	collection_dump_models_fn_rf = "models_dump_randomforest"
+	collection_dump_features_fn_rf = "features_dump_randomforest"
+	collection_dump_models_sa_nb = "models_dump_naivebayse"
+	collection_dump_features_sa_nb = "features_dump_tfidf_naivebayse"
+	collection_dump_models_fn_svm = "models_dump_svm_fn"
+	collection_dump_features_fn_svm = "features_dump_svm_fn"
+	collection_dump_models_sa_svm = "models_dump_svm_sa"
+	collection_dump_features_sa_svm = "features_dump_svm_sa"
 
-model_fn_rf = pickle.loads(db.grid_find(collection_dump_models_fn_rf))
-vectorizer_fn_rf = pickle.loads(db.grid_find(collection_dump_features_fn_rf))
-model_sa_nb = pickle.loads(db.grid_find(collection_dump_models_sa_nb))
-vectorizer_sa_nb = pickle.loads(db.grid_find(collection_dump_features_sa_nb))
-model_fn_svm = pickle.loads(db.grid_find(collection_dump_models_fn_svm))
-vectorizer_fn_svm = pickle.loads(db.grid_find(collection_dump_features_fn_svm))
-model_sa_svm = pickle.loads(db.grid_find(collection_dump_models_sa_svm))
-vectorizer_sa_svm = pickle.loads(db.grid_find(collection_dump_features_sa_svm))
+	model_fn_rf = pickle.loads(db.grid_find(collection_dump_models_fn_rf))
+	vectorizer_fn_rf = pickle.loads(db.grid_find(collection_dump_features_fn_rf))
+	model_sa_nb = pickle.loads(db.grid_find(collection_dump_models_sa_nb))
+	vectorizer_sa_nb = pickle.loads(db.grid_find(collection_dump_features_sa_nb))
+	model_fn_svm = pickle.loads(db.grid_find(collection_dump_models_fn_svm))
+	vectorizer_fn_svm = pickle.loads(db.grid_find(collection_dump_features_fn_svm))
+	model_sa_svm = pickle.loads(db.grid_find(collection_dump_models_sa_svm))
+	vectorizer_sa_svm = pickle.loads(db.grid_find(collection_dump_features_sa_svm))
 
 @app.route("/")
 def home():
@@ -204,16 +205,16 @@ def make_train():
         model = req_data["model"]
         if model == "Naive Bayes - Sentiment Analisys":
             path += "naive_bayse/start_naivebayse.sh"
-            path_logs_retrain = "/Users/mihnea-bogdancretu/Desktop/licenta/NLP_fakenews/naive_bayse/logs"
+            path_logs_retrain = "/Users/me/Desktop/licenta/NLP_fakenews/naive_bayse/logs"
         elif model == "Random Forest - Fake News":
             path += "random_forest/start_randomforest.sh"
-            path_logs_retrain = "/Users/mihnea-bogdancretu/Desktop/licenta/NLP_fakenews/random_forest/logs"
+            path_logs_retrain = "/Users/me/Desktop/licenta/NLP_fakenews/random_forest/logs"
         elif model == "SVM - Fake News":
             path += "SVM_FN/start_svm_fn.sh"
-            path_logs_retrain = "/Users/mihnea-bogdancretu/Desktop/licenta/NLP_fakenews/SVM_FN/logs"
+            path_logs_retrain = "/Users/me/Desktop/licenta/NLP_fakenews/SVM_FN/logs"
         elif model == "SVM - Sentiment Analisys":
             path += "SVM_SA/start_svm_sa.sh"
-            path_logs_retrain = "/Users/mihnea-bogdancretu/Desktop/licenta/NLP_fakenews/SVM_SA/logs"
+            path_logs_retrain = "/Users/me/Desktop/licenta/NLP_fakenews/SVM_SA/logs"
         else:
             return "You have to choose an algorithm for retrain!"
 

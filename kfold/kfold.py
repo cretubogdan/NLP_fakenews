@@ -62,6 +62,9 @@ def do_read():
         dataset_fn = dataset_fn[1:]
     l.log(Severity.INFO, "Finished reading dataset for FN")
 
+    dataset_fn = dataset_fn[0:1000]
+    dataset_sa = dataset_sa[0:1000]
+
 def get_score(model, x_train, x_test, y_train, y_test):
     model.fit(x_train, y_train)
     return model.score(x_test, y_test)
@@ -116,7 +119,7 @@ def do_kfold(model, name, dataset):
 if __name__ == "__main__":
     do_read()
     #do_kfold(RandomForestClassifier(n_estimators=100, n_jobs=-1), "RandomForest", dataset_fn)
-    do_kfold(MultinomialNB(), "Naive Bayes", dataset_sa)
+    #do_kfold(MultinomialNB(), "Naive Bayes", dataset_sa)
     #do_kfold(svm.SVC(), "SVM - FN", dataset_fn)
     #do_kfold(svm.SVC(), "SVM - SA", dataset_sa)
     wp.abort()

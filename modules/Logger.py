@@ -31,6 +31,7 @@ class Logger:
             error = 0
             try:
                 path = os.environ[Logger.ENV_VAR_PATH_NAME]
+                print(path)
                 Logger.file = open(path, 'w', buffering=Logger.bufsize)
                 self.log(Severity.INFO, "Logger initialization succesfully at the path: {0}".format(path))
             except:
